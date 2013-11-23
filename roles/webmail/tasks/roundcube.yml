@@ -1,5 +1,8 @@
+- name: Add Wheezy Backports repository
+  apt_repository: repo='deb http://ftp.debian.org/debian wheezy-backports main contrib non-free' state=present
+
 - name: Install Roundcube
-  apt: pkg=roundcube state=latest
+  apt: pkg=roundcube state=latest default_release=wheezy-backports
 
 - name: Configure the Apache HTTP server for roundcube
   template: src=etc_apache2_sites-available_roundcube.j2 dest=/etc/apache2/sites-available/roundcube group=www-data owner=www-data force=yes
